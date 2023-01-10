@@ -2,6 +2,11 @@
 
 See this as a starting point for your own lunch list plugin. Clone and code yourself a nice lunch list. Plugin requires ACF to be installed in your site
 
+
+## Adding lunch lists
+
+This creates a custom post type for lunch lists. Add a new lunchlist and set the title as ISO week number / year. So for example "2/2023" to set the second week of year 2023 lunch list. Here you can define the lunches for each day of the week.
+
 ## Usage
 
 ### Get today's lunch
