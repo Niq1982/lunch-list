@@ -49,11 +49,11 @@ add_filter('lunch_list/no_lunch', function () {
 ```php
 <?php $lunchList = new \LunchList\LunchList(2, 2023); ?>
 
-<h2>Todays lunch</h2>
-<?php echo wp_kses_post($lunchList->today); ?>
+<h2>Monday <?php echo esc_html(ucfirst(wp_date('d.m.Y', $lunchList->monday['date']))); ?> lunch</h2>
+<?php echo wp_kses_post($lunchList->monday['menu']); ?>
 
-<h2>Wednesdays lunch</h2>
-<?php echo wp_kses_post($lunchList->wednesday); ?>
+<h2>Wednesday <?php echo esc_html(ucfirst(wp_date('d.m.Y', $lunchList->wednesday['date'])));  ?> lunch</h2>
+<?php echo wp_kses_post($lunchList->wednesday['menu']); ?>
 ```
 
 ## Blocks

@@ -60,14 +60,22 @@ class LunchList
         }
     }
 
+    public function getDay($key)
+    {
+        return [
+            'menu' => !empty($this->days[$key]['menu']) ? $this->days[$key]['menu'] : apply_filters('lunch_list/no_lunch', ''),
+            'date' => $this->days[$key]['date'],
+        ];
+    }
+
     public function __get($key)
     {
         if (in_array($key, array_keys($this->days))) {
-            return $this->days[$key] ?: apply_filters('lunch_list/no_lunch', '');
+            return $this->getDay($key);
         }
 
         if ($key === 'today') {
-            return $this->today() ?: apply_filters('lunch_list/no_lunch', '');;
+            return $this->today() ?: apply_filters('lunch_list/no_lunch', '');
         }
     }
 
