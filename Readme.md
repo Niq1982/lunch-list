@@ -28,6 +28,7 @@ add_filter('lunch_list/set_lunch_days', function ($days) {
 add_filter('lunch_list/no_lunch', function () {
     return '<p>No lunch served</p>';
 });
+```
 
 ## Template usage
 
