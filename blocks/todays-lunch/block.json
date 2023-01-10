@@ -1,0 +1,9 @@
+{
+    "apiVersion": 2,
+    "title": "Today's lunch",
+    "name": "lunch-list/todays-lunch",
+    "category": "layout",
+    "icon": "dashicons-food",
+    "editorScript": "file:./block.js",
+    "render": "file:./render.php"
+}

@@ -1,0 +1,9 @@
+{
+    "apiVersion": 2,
+    "title": "This weeks lunch",
+    "name": "lunch-list/this-weeks-lunch",
+    "category": "layout",
+    "icon": "food",
+    "editorScript": "file:./block.js",
+    "render": "file:./render.php"
+}
