@@ -11,6 +11,7 @@ namespace LunchList;
 
 include plugin_dir_path(__FILE__) . 'includes/post-type.php';
 include plugin_dir_path(__FILE__) . 'includes/acf-fields.php';
+include plugin_dir_path(__FILE__) . 'LunchListDay.php';
 include plugin_dir_path(__FILE__) . 'LunchList.php';
 
 function register_block()

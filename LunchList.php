@@ -2,6 +2,8 @@
 
 namespace LunchList;
 
+use LunchList\LunchListDay;
+
 class LunchList
 {
     public array $days = [];
@@ -10,8 +12,10 @@ class LunchList
 
     public function __construct($weekNumber, $year)
     {
+        // Get lunchdays to show from filter
         $lunchDays = is_array(apply_filters('lunch_list/set_lunch_days', [])) ? apply_filters('lunch_list/set_lunch_days', []) : [];
 
+        // Filter the days according to the result
         $this->days = array_filter(
             [
                 'monday' => null,
@@ -32,57 +36,47 @@ class LunchList
         $weekNumber = intval($weekNumber);
         $year = intval($year);
 
+        // Set the date to the week number
         $date = new \DateTime('midnight');
         $date = $date->setISODate($year, $weekNumber, 1);
 
+        // Set the list title
         $this->title = "{$weekNumber}/{$year}";
+
         // Get the lunch list by week number and year
         $lunchListPost = get_page_by_title($this->title, OBJECT, 'lunch_list');
-        if (!$lunchListPost) {
-            return;
-        }
 
         // Check if ACF exists
         if (!function_exists('get_field')) {
-            return;
+            throw new \WP_Error('ACF is not installed');
         }
 
         $count = 1;
+
         // Map lunch values to days
         foreach (array_keys($this->days) as $day) {
-            $dateOfDay = $date->setISODate($year, $weekNumber, $count);
-            $this->days[$day] = [
-                'menu' => get_field($day, $lunchListPost),
-                'date' => $dateOfDay->getTimestamp(),
-            ];
-
+            $this->days[$day] = new LunchListDay();
+            $this->days[$day]->menu = $lunchListPost ? get_field($day, $lunchListPost) : false;
+            $this->days[$day]->date = \DateTime::createFromInterface($date->setISODate($year, $weekNumber, $count));
             $count++;
         }
-    }
-
-    public function getDay($key)
-    {
-        return [
-            'menu' => !empty($this->days[$key]['menu']) ? $this->days[$key]['menu'] : apply_filters('lunch_list/no_lunch', ''),
-            'date' => $this->days[$key]['date'],
-        ];
     }
 
     public function __get($key)
     {
         if (in_array($key, array_keys($this->days))) {
-            return $this->getDay($key);
+            return $this->days[$key];
         }
 
         if ($key === 'today') {
-            return $this->today() ?: apply_filters('lunch_list/no_lunch', '');
+            return $this->today();
         }
     }
 
     public static function getTodaysLunch()
     {
         $lunchList = self::getThisWeeksLunchList();
-        return $lunchList->today()['menu'];
+        return $lunchList->today()->menu;
     }
 
     public static function getThisWeeksLunchList()
