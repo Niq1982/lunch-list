@@ -1,6 +1,6 @@
 # A lunch list plugin for WordPress
 
-See this as a starting point for your own lunch list plugin. Clone and code yourself a nice lunch list.
+See this as a starting point for your own lunch list plugin. Clone and code yourself a nice lunch list. Plugin requires ACF to be installed in your site
 
 ## Usage
 
