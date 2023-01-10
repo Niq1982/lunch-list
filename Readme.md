@@ -13,9 +13,9 @@ See this as a starting point for your own lunch list plugin. Clone and code your
 
 ### Get the current weeks lunch list
 
+```php
+<?php $lunchList = \LunchList\LunchList::getThisWeeksLunchList(); ?>
 ```
-<?php $lunchList = \LunchList\LunchList::getThisWeeksLunchList()); ?>
-````
 
 ### Get a lunch list for certain week manually
 ```php
