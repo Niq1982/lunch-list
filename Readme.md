@@ -5,7 +5,7 @@ See this as a starting point for your own lunch list plugin. Clone and code your
 
 ## Adding lunch lists
 
-This creates a custom post type for lunch lists. Add a new lunchlist and set the title as ISO week number / year. So for example "2/2023" to set the second week of year 2023 lunch list. Here you can define the lunches for each day of the week.
+This creates a custom post type for lunch lists. The lunch list for a certain week is resolved from the lunch list title: set the title as ISO week number / year. So for example use title `2/2023` to set the second week of year 2023 lunch list.
 
 ## Usage
 
