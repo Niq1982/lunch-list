@@ -20,7 +20,19 @@ function register_block()
 }
 add_action('init', __NAMESPACE__ . '\register_block');
 
+add_filter('lunch_list/set_lunch_days', function ($days) {
+    return [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+    ];
+});
+
 // Set a default text for a day that has no lunch
-add_filter('lunch_list_no_lunch', function () {
+add_filter('lunch_list/no_lunch', function () {
     return '<p>No lunch served</p>';
 });

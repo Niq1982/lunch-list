@@ -7,7 +7,29 @@ See this as a starting point for your own lunch list plugin. Clone and code your
 
 This creates a custom post type for lunch lists. The lunch list for a certain week is resolved from the lunch list title: set the title as ISO week number / year. So for example use title `2/2023` to set the second week of year 2023 lunch list.
 
-## Usage
+## Hooks
+
+### Set the days when lunch is served
+```php
+add_filter('lunch_list/set_lunch_days', function ($days) {
+    return [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+    ];
+});
+```
+
+### Set the "no lunch served" text
+```php
+// Set a default text for a day that has no lunch
+add_filter('lunch_list/no_lunch', function () {
+    return '<p>No lunch served</p>';
+});
+
+## Template usage
 
 ### Get today's lunch
 
